@@ -1,0 +1,24 @@
+{
+  "name": "henry-backend",
+  "version": "1.0.0",
+  "description": "henry node js backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon server.js"
+  },
+  "author": "justice francis",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "express": "^4.17.3",
+    "formidable": "^2.0.1",
+    "mongoose": "^6.3.0",
+    "multer": "^1.4.4",
+    "nodemon": "^2.0.15",
+    "serve-index": "^1.9.1"
+  }
+}
