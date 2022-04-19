@@ -36,7 +36,7 @@ async function getCreditTransactions(req,res,next){
         const transactions = Credit.find()
         .then((data)=>{
             console.log(data.length)
-            return res.json({data,status : 'failed'})
+            return res.json({data,status : 'success'})
         })
     }
    }
@@ -68,7 +68,7 @@ async function getScreenshots(req,res,next){
         const screenshots = Screenshot.find()
         .then((data)=>{
             console.log(data.length)
-            return res.json({data,status : 'failed'})
+            return res.json({data,status : 'success'})
         })
     }
    }
@@ -104,7 +104,7 @@ async function getDebitTransactions(req,res,next){
         const debits = Debit.find()
         .then((data)=>{
             console.log(data.length)
-            return res.json({data,status : 'failed'})
+            return res.json({data,status : 'success'})
         })
     }
    }
