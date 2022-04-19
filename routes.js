@@ -81,13 +81,13 @@ router.get('/wallet/:email', wallet_controller.getWallet)
 
 //admin
 //get all credit transaction
-router.post('/transactions/credit', admin_controller.getCreditTransactions)
+router.post('/admin/transactions/credit', admin_controller.getCreditTransactions)
 
 //get all debit transaction
-router.post('/transactions/debit', admin_controller.getDebitTransactions)
+router.post('/admin/transactions/debit', admin_controller.getDebitTransactions)
 
 //get all screenshots transaction
-router.post('/screenshots', admin_controller.getScreenshots)
+router.post('/admin/screenshots', admin_controller.getScreenshots)
 
 
 module.exports = router;
