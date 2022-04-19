@@ -154,15 +154,6 @@ module.exports.approveTransaction = approveTransaction
 
 
 
-//get credit transactions
-async function getCreditTransactions(req,res,next){
-    const transactions = Credit.find()
-    .then((data)=>{
-        return res.json(data)
-    })
-
-}
-module.exports.getCreditTransactions = getCreditTransactions
 
 //get credit transactions for a user
 async function getCreditTransactionsUser(req,res,next){
