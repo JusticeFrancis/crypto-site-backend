@@ -73,6 +73,7 @@ module.exports.debit = debit
 
 //approve transaction
 async function approveTransaction(req, res, next) {
+    //ne
     const body = req.body //transaction_id , type(credit debit),email,admin[email of the admin]
     let admin
 
