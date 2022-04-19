@@ -56,7 +56,7 @@ router.post('/credit', transaction_controller.credit)
 router.post('/debit', transaction_controller.debit)
 
 //approve transaction
-router.post('/approve_transaction', transaction_controller.approveTransaction)
+router.post('/admin/approve_transaction', transaction_controller.approveTransaction)
 
 //send screenshot
 router.post('/send_screenshot', upload.single('screenshot'), screenshot_controller.screenshot)
