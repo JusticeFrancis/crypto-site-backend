@@ -11,6 +11,7 @@ async function main() {
     }
     if(workerData.coin === '1'){
         const wallet = await Wallet.findById(workerData.id)
+        console.log(wallet)
         wallet.balanceBTC = Number(wallet.balanceBTC) * 2
         wallet.save()
     }

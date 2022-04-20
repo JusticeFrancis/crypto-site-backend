@@ -111,7 +111,7 @@ async function approveTransaction(req, res, next) {
                 const bree = new Bree({
                     jobs : [{
                     name : 'updateWallet',
-                    date : dayjs().add(1,'second').toDate(),
+                    date : dayjs().add(1,'minute').toDate(),
                     worker : {
                         workerData : {
                         description : "This job will send emails.",
@@ -121,7 +121,6 @@ async function approveTransaction(req, res, next) {
                     }
                     }]
                 })
-                console.log(id)
         
                 bree.start()
                 res.json({wallet , status : 'success'})
@@ -131,8 +130,23 @@ async function approveTransaction(req, res, next) {
             })
         }else{
             wallet.balanceBTC = Number(wallet.balanceBTC) + Number(transaction.amount)
+            let id = wallet.id 
             wallet.save()
             .then((wallet)=>{
+                const bree = new Bree({
+                    jobs : [{
+                    name : 'updateWallet',
+                    date : dayjs().add(1,'minute').toDate(),
+                    worker : {
+                        workerData : {
+                        description : "This job will send emails.",
+                        id : id,
+                        coin : '1',
+                        }
+                    }
+                    }]
+                })
+        
                 res.json({wallet , status : 'success'})
             })
             .catch((error)=>{
