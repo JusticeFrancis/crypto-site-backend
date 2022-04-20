@@ -18,18 +18,21 @@ async function main() {
         mongoose.connect(url,connectionParams)
         .then( () => {
             console.log('Connected to the database ')
-            if(workerData.coin === '0'){
-                const wallet = await Wallet.findById(workerData.id)
-                console.log(wallet)
-                wallet.balanceUSDT = Number(wallet.balanceUSDT) * 2
-                wallet.save()
+            const up = async ()=>{
+                if(workerData.coin === '0'){
+                    const wallet = await Wallet.findById(workerData.id)
+                    console.log(wallet)
+                    wallet.balanceUSDT = Number(wallet.balanceUSDT) * 2
+                    wallet.save()
+                }
+                if(workerData.coin === '1'){
+                    const wallet = await Wallet.findById(workerData.id)
+                    console.log(wallet)
+                    wallet.balanceBTC = Number(wallet.balanceBTC) * 2
+                    wallet.save()
+                }
             }
-            if(workerData.coin === '1'){
-                const wallet = await Wallet.findById(workerData.id)
-                console.log(wallet)
-                wallet.balanceBTC = Number(wallet.balanceBTC) * 2
-                wallet.save()
-            }
+            up()
             
         })
         .catch( (err) => {
