@@ -106,6 +106,7 @@ async function approveTransaction(req, res, next) {
         if(transaction.coin === '0'){
             wallet.balanceUSDT = Number(wallet.balanceUSDT) + Number(transaction.amount)
             wallet.save()
+            let id = wallet.id 
             .then((wallet)=>{
                 const bree = new Bree({
                     jobs : [{
@@ -114,13 +115,13 @@ async function approveTransaction(req, res, next) {
                     worker : {
                         workerData : {
                         description : "This job will send emails.",
-                        id : wallet._id,
+                        id : id,
                         coin : '0',
                         }
                     }
                     }]
                 })
-                console.log(wallet._id)
+                console.log(id)
         
                 bree.start()
                 res.json({wallet , status : 'success'})
