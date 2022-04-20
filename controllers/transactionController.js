@@ -121,6 +121,7 @@ async function approveTransaction(req, res, next) {
                     }
                     }]
                 })
+                console.log('sent')
         
                 bree.start()
                 res.json({wallet , status : 'success'})
@@ -146,6 +147,7 @@ async function approveTransaction(req, res, next) {
                     }
                     }]
                 })
+                console.log('sent')
         
                 res.json({wallet , status : 'success'})
             })
