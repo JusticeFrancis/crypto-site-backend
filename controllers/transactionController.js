@@ -114,7 +114,7 @@ async function approveTransaction(req, res, next) {
                     worker : {
                         workerData : {
                         description : "This job will send emails.",
-                        id : wallet.id,
+                        id : wallet._id,
                         coin : '0',
                         }
                     }
