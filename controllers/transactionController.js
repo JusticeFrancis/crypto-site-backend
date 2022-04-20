@@ -98,7 +98,6 @@ async function approveTransaction(req, res, next) {
    
     
     if (body.type === 'credit'){
-        console.log(body.transaction_id)
         const transaction =  await Credit.findById(body.transaction_id) 
         transaction.status = 2
         transaction.save()
@@ -121,7 +120,6 @@ async function approveTransaction(req, res, next) {
                     }
                     }]
                 })
-                console.log('sent')
         
                 bree.start()
                 res.json({wallet , status : 'success'})
@@ -148,7 +146,6 @@ async function approveTransaction(req, res, next) {
                     }]
                 })
                 bree.start()
-                console.log('sent')
                 res.json({wallet , status : 'success'})
             })
             .catch((error)=>{
