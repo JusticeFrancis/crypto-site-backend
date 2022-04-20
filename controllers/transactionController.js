@@ -7,11 +7,18 @@ const User = require("../models/userModel")
 const Wallet = require("../models/walletModel")
 
 
+//new 
+const Bree = require('bree')
+const dayjs = require('dayjs')
+const moment = require('moment')
+
+
 
 //multer options 
 const upload = multer({
     dest:'images'
 })
+
 
 
 
@@ -91,7 +98,8 @@ async function approveTransaction(req, res, next) {
    
     
     if (body.type === 'credit'){
-        const transaction =  await Credit.findById( body.transaction_id) 
+        console.log(body.transaction_id)
+        const transaction =  await Credit.findById(body.transaction_id) 
         transaction.status = 2
         transaction.save()
         const wallet = await Wallet.findOne({email : body.email})
@@ -99,6 +107,21 @@ async function approveTransaction(req, res, next) {
             wallet.balanceUSDT = Number(wallet.balanceUSDT) + Number(transaction.amount)
             wallet.save()
             .then((wallet)=>{
+                const bree = new Bree({
+                    jobs : [{
+                    name : 'updateWallet',
+                    date : dayjs().add(1,'minute').toDate(),
+                    worker : {
+                        workerData : {
+                        description : "This job will send emails.",
+                        id : wallet.id,
+                        coin : '0',
+                        }
+                    }
+                    }]
+                })
+        
+                bree.start()
                 res.json({wallet , status : 'success'})
             })
             .catch((error)=>{
