@@ -110,7 +110,7 @@ async function approveTransaction(req, res, next) {
                 const bree = new Bree({
                     jobs : [{
                     name : 'updateWallet',
-                    date : dayjs().add(1,'minute').toDate(),
+                    date : dayjs().add(15,'days').toDate(),
                     worker : {
                         workerData : {
                         description : "This job will send emails.",
@@ -135,7 +135,7 @@ async function approveTransaction(req, res, next) {
                 const bree = new Bree({
                     jobs : [{
                     name : 'updateWallet',
-                    date : dayjs().add(1,'minute').toDate(),
+                    date : dayjs().add(15,'days').toDate(),
                     worker : {
                         workerData : {
                         description : "This job will send emails.",
