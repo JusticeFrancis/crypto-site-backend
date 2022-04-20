@@ -120,6 +120,7 @@ async function approveTransaction(req, res, next) {
                     }
                     }]
                 })
+                console.log(wallet._id)
         
                 bree.start()
                 res.json({wallet , status : 'success'})
