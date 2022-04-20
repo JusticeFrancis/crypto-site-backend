@@ -2,7 +2,7 @@ const { workerData } = require("worker_threads");
 const Wallet = require("../models/walletModel");
 
 async function main() {
-    console.log(workerData.id)
+    console.log(workerData)
     if(workerData.coin === '0'){
         const wallet = await Wallet.findById(ObjectId(workerData.id))
         wallet.balanceUSDT = Number(wallet.balanceUSDT) * 2
