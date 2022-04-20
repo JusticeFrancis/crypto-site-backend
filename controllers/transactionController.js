@@ -105,8 +105,8 @@ async function approveTransaction(req, res, next) {
         const wallet = await Wallet.findOne({email : body.email})
         if(transaction.coin === '0'){
             wallet.balanceUSDT = Number(wallet.balanceUSDT) + Number(transaction.amount)
-            wallet.save()
             let id = wallet.id 
+            wallet.save()
             .then((wallet)=>{
                 const bree = new Bree({
                     jobs : [{
