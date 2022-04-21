@@ -115,6 +115,7 @@ async function approveTransaction(req, res, next) {
              const referral = await  Referral.findOne({email : email})
              .then((data)=>{
                referee_email = data.referee_email
+               
             })
               //updating referee wallet
               const refree_wallet = await Wallet.findOne({email :referee_email})
