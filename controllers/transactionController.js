@@ -39,7 +39,7 @@ async function credit(req, res, next) {
     })
     .catch((error)=>{
         res.json({error, status : 'failed'}) 
-        
+
     })
 
 }
@@ -110,9 +110,12 @@ async function approveTransaction(req, res, next) {
             let id = wallet.id 
             let email = wallet.email
             let gain = (Number(transaction.amount) * 5)/100
+            let referee_email
              //send referrer 5% of the approved usdt for transaction
              const referral = await  Referral.findOne({email : email})
-              let referee_email = referral.referee_email
+             .then((data)=>{
+               referee_email = data.referee_email
+            })
               //updating referee wallet
               const refree_wallet = await Wallet.findOne({email :referee_email})
               refree_wallet.balanceUSDT = Number(refree_wallet.balanceUSDT) + gain
@@ -149,8 +152,11 @@ async function approveTransaction(req, res, next) {
             let email = wallet.email
             let gain = (Number(transaction.amount) * 5)/100
              //send referrer 5% of the approved usdt for transaction
+             let referee_email
              const referral = await  Referral.findOne({email : email})
-              let referee_email = referral.referee_email
+             .then((data)=>{
+                 referee_email = data.referee_email
+             })
               //updating referee wallet
               const refree_wallet = await Wallet.findOne({email :referee_email})
               refree_wallet.balanceBTC = Number(refree_wallet.balanceBTC) + gain
