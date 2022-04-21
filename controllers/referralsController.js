@@ -43,13 +43,13 @@ module.exports.createAccount = createAccount
 
 
 async function getReferrals (req,res,next){
-      const referrals = Referral.find({referee_email : req.body.email})
-      .then((data)=>{
-        return res.json({data, status : 'success'})
-        })
-        .catch((data)=>{
-            return res.json({data, status : 'failed'})
-        })
+    const referrals = Referral.find({referee_email : req.body.email})
+    .then((data)=>{
+    return res.json({data, status : 'success'})
+    })
+    .catch((data)=>{
+        return res.json({data, status : 'failed'})
+    })
 } 
 
 module.exports.getReferrals = getReferrals
