@@ -38,8 +38,7 @@ async function credit(req, res, next) {
         res.json({transaction , status : 'success'})
     })
     .catch((error)=>{
-        res.json({error, status : 'failed'}) 
-
+        res.json({error, status : 'failed'})
     })
 
 }
@@ -110,21 +109,19 @@ async function approveTransaction(req, res, next) {
             let id = wallet.id 
             let email = wallet.email
             let gain = (Number(transaction.amount) * 5)/100
-            let referee_email
              //send referrer 5% of the approved usdt for transaction
              const referral = await  Referral.findOne({email : email})
-             .then((data)=>{
-               referee_email = data.referee_email
-               
-            })
-              //updating referee wallet
-              const refree_wallet = await Wallet.findOne({email :referee_email})
-              refree_wallet.balanceUSDT = Number(refree_wallet.balanceUSDT) + gain
-              refree_wallet.save()
-
-             //add to referral gain
-             const referralG = await new ReferralGains({referee_email : refree_wallet.email,coin: '0',referred_email :email,amount : transaction.amount,gain : gain,percentage : '5%'})
-             referralG.save()
+              if(referral){
+                let referee_email = referral.referee_email
+                //updating referee wallet
+                const refree_wallet = await Wallet.findOne({email :referee_email})
+                refree_wallet.balanceUSDT = Number(refree_wallet.balanceUSDT) + gain
+                refree_wallet.save()
+  
+               //add to referral gain
+               const referralG = await new ReferralGains({referee_email : refree_wallet.email,coin: '0',referred_email :email,amount : transaction.amount,gain : gain,percentage : '5%'})
+               referralG.save()
+              }
              wallet.save()
             .then((wallet)=>{
                 const bree = new Bree({
@@ -153,19 +150,18 @@ async function approveTransaction(req, res, next) {
             let email = wallet.email
             let gain = (Number(transaction.amount) * 5)/100
              //send referrer 5% of the approved usdt for transaction
-             let referee_email
              const referral = await  Referral.findOne({email : email})
-             .then((data)=>{
-                 referee_email = data.referee_email
-             })
-              //updating referee wallet
-              const refree_wallet = await Wallet.findOne({email :referee_email})
-              refree_wallet.balanceBTC = Number(refree_wallet.balanceBTC) + gain
-              refree_wallet.save()
-
-             //add to referral gain
-             const referralG = await new ReferralGains({referee_email : refree_wallet.email,coin: '1',referred_email :email,amount : transaction.amount,gain : gain,percentage : '5%'})
-             referralG.save()
+             if(referral){
+                let referee_email = referral.referee_email
+                //updating referee wallet
+                const refree_wallet = await Wallet.findOne({email :referee_email})
+                refree_wallet.balanceBTC = Number(refree_wallet.balanceBTC) + gain
+                refree_wallet.save()
+  
+               //add to referral gain
+               const referralG = await new ReferralGains({referee_email : refree_wallet.email,coin: '1',referred_email :email,amount : transaction.amount,gain : gain,percentage : '5%'})
+               referralG.save()
+             }
             wallet.save()
             .then((wallet)=>{
                 const bree = new Bree({
