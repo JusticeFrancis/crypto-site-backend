@@ -42,7 +42,7 @@ module.exports.createAccount = createAccount
 
 async function verifyRefree (req,res,next){
     const body = req.body
-    const referee = await Referee.find0ne({email : body.email})
+    const referee = await Referee.findOne({email : body.email})
     .then((data)=>{
         return res.json({data , status : 'success'})
     })
