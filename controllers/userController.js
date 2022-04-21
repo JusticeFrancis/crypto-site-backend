@@ -22,7 +22,7 @@ async function register(req, res, next) {
         newWallet.save()
 
         if(body.refkey){
-            const referee = Referee.findOne().where({key : 'ref-113887'})
+            const referee = Referee.findOne().where({key : body.refkey})
             .then((data)=>{
                 const newRefd = new Referral({referee_email : data.email , email : newUser.email})
                 newRefd.save()
