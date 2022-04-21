@@ -44,7 +44,12 @@ module.exports.createAccount = createAccount
 
 async function getReferrals (req,res,next){
       const referrals = Referral.find({referee_email : req.body.email})
-      return res.json(referrals)
+      .then((data)=>{
+        return res.json({data, status : 'success'})
+        })
+        .catch((data)=>{
+            return res.json({data, status : 'failed'})
+        })
 } 
 
 module.exports.getReferrals = getReferrals
@@ -55,8 +60,13 @@ module.exports.getReferrals = getReferrals
 
 
 async function getReferralGains (req,res,next){
-    const referrals = ReferralGains.find({referee_email : req.body.email})
-    return res.json(referrals)
+    const referrals = await ReferralGains.find({referee_email : req.body.email})
+    .then((data)=>{
+        return res.json({data, status : 'success'})
+    })
+    .catch((data)=>{
+        return res.json({data, status : 'failed'})
+    })
 } 
 
 module.exports.getReferralGains = getReferralGains
