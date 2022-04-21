@@ -6,6 +6,7 @@ const transaction_controller = require('./controllers/transactionController')
 const screenshot_controller = require('./controllers/screenshotController')
 const wallet_controller = require('./controllers/walletController')
 const admin_controller = require('./controllers/adminController')
+const referrals_controller = require('./controllers/referralsController')
 const bodyParser = require('body-parser');
 
 const router = express.Router()
@@ -89,6 +90,18 @@ router.post('/admin/transactions/debit', admin_controller.getDebitTransactions)
 //get all screenshots transaction
 router.post('/admin/screenshots', admin_controller.getScreenshots)
 
+
+
+//referral routes
+
+//create referee account
+router.post('/referrals/create_account', referrals_controller.createAccount)
+
+//get referrals
+router.post('/referrals/get_referrals', referrals_controller.getReferrals)
+
+//get referral gains
+router.post('/referrals/get_referralGains', referrals_controller.getReferralGains)
 
 module.exports = router;
 
