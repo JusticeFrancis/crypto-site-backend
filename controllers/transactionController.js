@@ -38,7 +38,8 @@ async function credit(req, res, next) {
         res.json({transaction , status : 'success'})
     })
     .catch((error)=>{
-        res.json({error, status : 'failed'})
+        res.json({error, status : 'failed'}) 
+        
     })
 
 }
