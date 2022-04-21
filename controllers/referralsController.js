@@ -37,6 +37,26 @@ async function createAccount (req,res,next){
 module.exports.createAccount = createAccount
 
 
+//verify referee account
+
+
+async function verifyRefree (req,res,next){
+    const body = req.body
+    const referee = await Referee.find0ne({email : body.email})
+    .then((data)=>{
+        return res.json({data , status : 'success'})
+    })
+    .catch((err)=>{
+        return res.json({err , status : 'failed'})
+    })
+    
+
+} 
+
+module.exports.verifyRefree = verifyRefree
+
+
+
 
 
 //get referrals

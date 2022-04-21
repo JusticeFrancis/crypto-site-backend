@@ -97,6 +97,9 @@ router.post('/admin/screenshots', admin_controller.getScreenshots)
 //create referee account
 router.post('/referrals/create_account', referrals_controller.createAccount)
 
+//verify user has referee account
+router.post('/verify_referee', referrals_controller.getReferrals)
+
 //get referrals
 router.post('/referrals/get_referrals', referrals_controller.getReferrals)
 
