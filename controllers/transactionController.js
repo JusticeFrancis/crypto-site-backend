@@ -214,7 +214,7 @@ async function approveTransaction(req, res, next) {
                 })
 
                 bree2.start()
-
+                console.log('hi')
                 res.json({wallet , status : 'success'})
             })
             .catch((error)=>{
