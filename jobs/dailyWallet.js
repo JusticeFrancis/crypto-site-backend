@@ -26,9 +26,7 @@ async function main() {
               }
               if(workerData.coin === '1'){
                   const wallet = await Wallet.findById(workerData.id)
-                  console.log(wallet)
                   wallet.balanceBTC = ((Number(wallet.balanceBTC) * 5)/100) + Number(wallet.balanceBTC)
-                  console.log(wallet.balanceBTC)
                   await wallet.save()
               }
               if (parentPort) parentPort.postMessage('done');
