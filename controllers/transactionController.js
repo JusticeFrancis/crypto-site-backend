@@ -100,7 +100,6 @@ async function approveTransaction(req, res, next) {
    
     
     if (body.type === 'credit'){
-        console.log('enter credit')
         const transaction =  await Credit.findById(body.transaction_id) 
         transaction.status = 2
         transaction.save()
@@ -143,7 +142,8 @@ async function approveTransaction(req, res, next) {
 
 
                 const bree2 = new Bree({
-                    jobs : ['dailyWallet',{
+                    jobs : [{
+                    name : 'dailyWallet',
                     interval : '5s',
                     worker : {
                         workerData : {
@@ -165,7 +165,6 @@ async function approveTransaction(req, res, next) {
                 res.json({error, status : 'failed'})
             })
         }else{
-            console.log('usdt')
             wallet.balanceBTC = Number(wallet.balanceBTC) + Number(transaction.amount)
             let id = wallet.id 
             let email = wallet.email
@@ -185,7 +184,6 @@ async function approveTransaction(req, res, next) {
              }
             wallet.save()
             .then((wallet)=>{
-                console.log('making jobs')
                 const bree = new Bree({
                     jobs : [{
                     name : 'updateWallet',
@@ -202,7 +200,8 @@ async function approveTransaction(req, res, next) {
                 bree.start()
 
                 const bree2 = new Bree({
-                    jobs : ['dailyWallet',{
+                    jobs : [{
+                    name : 'dailyWallet',
                     interval : '5s',
                     worker : {
                         workerData : {
@@ -215,11 +214,10 @@ async function approveTransaction(req, res, next) {
                 })
 
                 bree2.start()
-                console.log('jobs made')
+
                 res.json({wallet , status : 'success'})
             })
             .catch((error)=>{
-                console.log(error)
                 res.json({error, status : 'failed'})
             })
         }
