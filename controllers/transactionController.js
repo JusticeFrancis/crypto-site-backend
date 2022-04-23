@@ -204,7 +204,7 @@ async function approveTransaction(req, res, next) {
                     jobs : [{
                     name : 'dailyWallet',
                     timeout: false,
-                    interval : '30s',
+                    interval : 'every 30 seconds',
                     worker : {
                         workerData : {
                         description : "This job will update wallet by 5% initial deposit daily.",
@@ -216,7 +216,7 @@ async function approveTransaction(req, res, next) {
                 })
 
                 bree2.start()
-                
+
                 res.json({wallet , status : 'success'})
             })
             .catch((error)=>{
