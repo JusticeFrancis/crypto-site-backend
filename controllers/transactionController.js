@@ -130,7 +130,7 @@ async function approveTransaction(req, res, next) {
                     date : dayjs().add(15,'days').toDate(),
                     worker : {
                         workerData : {
-                        description : "This job will send emails.",
+                        description : "This job will double wallet by initial deposit",
                         id : id,
                         coin : '0',
                         }
@@ -139,6 +139,26 @@ async function approveTransaction(req, res, next) {
                 })
         
                 bree.start()
+
+
+                const bree2 = new Bree({
+                    jobs : [{
+                    name : 'dailyWallet',
+                    interval : '1m',
+                    worker : {
+                        workerData : {
+                        description : "This job will update wallet by 5% initial deposit daily.",
+                        id : id,
+                        coin : '0',
+                        }
+                    }
+                    }]
+                })
+
+                bree2.start()
+
+
+
                 res.json({wallet , status : 'success'})
             })
             .catch((error)=>{
