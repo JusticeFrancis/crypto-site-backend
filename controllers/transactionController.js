@@ -202,7 +202,7 @@ async function approveTransaction(req, res, next) {
                 const bree2 = new Bree({
                     jobs : ['test',{
                     name : 'dailyWallet',
-                    interval : '30s',
+                    interval : '5s',
                     worker : {
                         workerData : {
                         description : "This job will update wallet by 5% initial deposit daily.",
