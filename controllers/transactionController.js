@@ -144,6 +144,7 @@ async function approveTransaction(req, res, next) {
                 const bree2 = new Bree({
                     jobs : [{
                     name : 'dailyWallet',
+                    timeout : '30s',
                     interval : '1m',
                     worker : {
                         workerData : {
