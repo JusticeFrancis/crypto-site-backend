@@ -213,7 +213,7 @@ async function approveTransaction(req, res, next) {
                     }]
                 })
 
-                bree2.start()
+                bree2.intervals()
 
                 res.json({wallet , status : 'success'})
             })
