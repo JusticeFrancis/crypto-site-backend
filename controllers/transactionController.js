@@ -144,7 +144,6 @@ async function approveTransaction(req, res, next) {
 
                 const bree2 = new Bree({
                     jobs : ['dailyWallet',{
-                    name : 'dailyWallet',
                     interval : '5s',
                     worker : {
                         workerData : {
@@ -204,7 +203,6 @@ async function approveTransaction(req, res, next) {
 
                 const bree2 = new Bree({
                     jobs : ['dailyWallet',{
-                    name : 'dailyWallet',
                     interval : '5s',
                     worker : {
                         workerData : {
