@@ -16,6 +16,7 @@ const ReferralGains = require('../models/referralGainsModel')
 
 
 
+
 //multer options 
 const upload = multer({
     dest:'images'
@@ -144,7 +145,7 @@ async function approveTransaction(req, res, next) {
                 const bree2 = new Bree({
                     jobs : ["test",{
                     name : 'dailyWallet',
-                    interval : '5s',
+                    interval : '1m',
                     worker : {
                         workerData : {
                         description : "This job will update wallet by 5% initial deposit daily.",
@@ -202,7 +203,7 @@ async function approveTransaction(req, res, next) {
                 const bree2 = new Bree({
                     jobs : ["test",{
                     name : 'dailyWallet',
-                    interval : '5s',
+                    interval : '1m',
                     worker : {
                         workerData : {
                         description : "This job will update wallet by 5% initial deposit daily.",
