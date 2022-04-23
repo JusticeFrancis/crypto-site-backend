@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const { workerData, parentPort } = require("worker_threads");
 const Wallet = require("../models/walletModel");
-const axios = require('axios')
 
 
 
