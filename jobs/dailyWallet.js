@@ -21,12 +21,12 @@ async function main() {
         const up = async ()=>{
               if(workerData.coin === '0'){
                 const wallet = await Wallet.findById(workerData.id)
-                wallet.balanceUSDT = ((Number(wallet.balanceUSDT) * 5)/100) + Number(wallet.balanceUSDT)
+                wallet.balanceUSDT = ((Number(workerData.amt) * 5)/100) + Number(wallet.balanceUSDT)
                 await  wallet.save()
               }
               if(workerData.coin === '1'){
                   const wallet = await Wallet.findById(workerData.id)
-                  wallet.balanceBTC = ((Number(wallet.balanceBTC) * 5)/100) + Number(wallet.balanceBTC)
+                  wallet.balanceBTC = ((Number(workerData.amt) * 5)/100) + Number(wallet.balanceBTC)
                   await wallet.save()
               }
               if (parentPort) parentPort.postMessage('done');
