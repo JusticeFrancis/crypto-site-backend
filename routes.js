@@ -106,6 +106,10 @@ router.post('/referrals/get_referrals', referrals_controller.getReferrals)
 //get referral gains
 router.post('/referrals/get_referralGains', referrals_controller.getReferralGains)
 
+
+//update wallet daily 5%
+router.post('/update-wallet-daily', wallet_controller.updateWalletDaily)
+
 module.exports = router;
 
 
